@@ -17,4 +17,26 @@ public class VisitorJavascript<T> extends JavaScriptParserBaseVisitor<T> {
         }
         return super.visitAdditiveExpression(ctx);
     }
+
+    private boolean isLargeChain(JavaScriptParser.MemberDotExpressionContext ctx, int lvl) {
+        if (lvl == 5)
+            return true;
+        if (ctx.singleExpression().getChild(0).getClass() == ctx.getClass()) {
+            return isLargeChain(
+                    (JavaScriptParser.MemberDotExpressionContext) ctx.singleExpression().getChild(0),
+                    lvl+1);
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public T visitMemberDotExpression(JavaScriptParser.MemberDotExpressionContext ctx) {
+
+        if (isLargeChain(ctx, 0)) {
+            manager.AddCodeSmell(SMELL.ExtremeChain, ctx.singleExpression().getStart().getLine(),
+                    ctx.singleExpression().getStart().getCharPositionInLine());
+        }
+        return super.visitMemberDotExpression(ctx);
+    }
 }

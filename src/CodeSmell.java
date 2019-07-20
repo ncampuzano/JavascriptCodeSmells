@@ -1,5 +1,6 @@
 enum SMELL {
-    ThatThis
+    ThatThis, // https://elijahmanor.com/talks/js-smells/#/4/2
+    ConCat, // https://elijahmanor.com/talks/js-smells/#/5/3
 }
 
 public class CodeSmell {

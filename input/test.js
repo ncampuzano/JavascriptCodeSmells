@@ -19,3 +19,9 @@ Person.prototype.clean = function(tooth) {
 var person = new Person();
 person.brush();
 console.log(person.teeth);
+
+var build = function(id, href, text) {
+  return $( "<div id='tab'><a href='" + href + "' id='" + id + "'>" +
+    text + "</a></div>" );
+}
+var s = "Hola" + "Hello" + "Mundo" + "World"

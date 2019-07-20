@@ -9,4 +9,12 @@ public class VisitorJavascript<T> extends JavaScriptParserBaseVisitor<T> {
         }
         return super.visitVariableDeclaration(ctx);
     }
+    @Override
+    public T visitAdditiveExpression(JavaScriptParser.AdditiveExpressionContext ctx) {
+        if (ctx.singleExpression(0).getText().startsWith("'") || ctx.singleExpression(0).getText().startsWith("\"")) {
+            manager.AddCodeSmell(SMELL.ConCat, ctx.singleExpression(0).getStart().getLine(),
+                    ctx.singleExpression(0).getStart().getCharPositionInLine());
+        }
+        return super.visitAdditiveExpression(ctx);
+    }
 }

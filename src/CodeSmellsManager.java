@@ -21,6 +21,8 @@ public class CodeSmellsManager {
         codeSmell.type = type;
         codeSmell.line = line;
         codeSmell.column = column;
+        if (codeSmell.type == SMELL.AnonymousFunction)
+            return;
         if (!isInside(codeSmells, codeSmell)) {
             codeSmells.add(codeSmell);
         }

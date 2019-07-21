@@ -79,10 +79,10 @@ public class VisitorJavascript<T> extends JavaScriptParserBaseVisitor<T> {
                 identifierContext = (JavaScriptParser.IdentifierExpressionContext) ctx.singleExpression();
             }
             List<ParseTree> childre = ctx.arguments().children;
-            if (identifierContext != null && !identifierContext.getText().equals("Promise")) {
+            if (identifierContext != null && (!identifierContext.getText().equals("Promise")
+                && !identifierContext.getText().equals("then") && !identifierContext.getText().equals("catch"))) {
                 for(int i = 0; i < childre.size(); i++) {
-                    if (!ctx.singleExpression().getClass().getName().equals("JavaScriptParser$MemberDotExpressionContext") &&
-                            childre.get(i).getClass().getName().equals("JavaScriptParser$FunctionExpressionContext")) {
+                    if (childre.get(i).getClass().getName().equals("JavaScriptParser$FunctionExpressionContext")) {
                         manager.AddCodeSmell(SMELL.BrokenPromise, ctx.getStart().getLine(),
                                 ctx.getStart().getCharPositionInLine());
                         return super.visitArgumentsExpression(ctx);

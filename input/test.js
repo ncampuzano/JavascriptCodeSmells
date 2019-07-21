@@ -5,7 +5,7 @@ function Person() {
 Person.prototype.brush = function() {
   var that = this;
 
-  this.teeth.forEach(function(tooth) {
+  this.teeth.forEach(function clean(tooth) {
     that.clean(tooth);
   });
 
@@ -15,7 +15,9 @@ Person.prototype.brush = function() {
 Person.prototype.clean = function(tooth) {
   tooth.clean = true;
 }
-
+var s = () => {
+}
+/*
 var person = new Person();
 person.brush();
 console.log(person.teeth);
@@ -34,4 +36,10 @@ $(document).ready(function() {
     .mouseenter(function() { $(this).addClass('Component--over'); })
     .mouseleave(function() { $(this).removeClass('Component--over'); })
     .addClass('initialized');
+});
+*/
+var search = document.querySelector('.Autocomplete');
+search.addEventListener('input', function(e) {
+    // Make Ajax call for autocomplete
+    console.log(e.target.value);
 });

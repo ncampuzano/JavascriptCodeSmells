@@ -39,4 +39,15 @@ public class VisitorJavascript<T> extends JavaScriptParserBaseVisitor<T> {
         }
         return super.visitMemberDotExpression(ctx);
     }
+
+    @Override
+    public T visitFunctionExpression(JavaScriptParser.FunctionExpressionContext ctx) {
+        if (!ctx.getParent().getClass().getName().equals("JavaScriptParser$AssignmentExpressionContext")) {
+            if(ctx.Identifier() == null) {
+                manager.AddCodeSmell(SMELL.AnonymousFunction, ctx.getStart().getLine(),
+                        ctx.getStart().getCharPositionInLine());
+            }
+        }
+        return super.visitFunctionExpression(ctx);
+    }
 }

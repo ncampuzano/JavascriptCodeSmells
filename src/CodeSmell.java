@@ -4,6 +4,8 @@ enum SMELL {
     ExtremeChain, // https://elijahmanor.com/talks/js-smells/#/6/2
     AnonymousFunction, // https://elijahmanor.com/talks/js-smells/#/11/3
     Equality, // https://github.com/mohuk/js-code-smells#equality
+    BrokenPromise, // https://github.com/mohuk/js-code-smells#broken-promises
+
 }
 
 public class CodeSmell {

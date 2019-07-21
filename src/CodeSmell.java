@@ -3,6 +3,7 @@ enum SMELL {
     ConCat, // https://elijahmanor.com/talks/js-smells/#/5/3
     ExtremeChain, // https://elijahmanor.com/talks/js-smells/#/6/2
     AnonymousFunction, // https://elijahmanor.com/talks/js-smells/#/11/3
+    Equality, // https://github.com/mohuk/js-code-smells#equality
 }
 
 public class CodeSmell {

@@ -9,6 +9,7 @@ public class VisitorJavascript<T> extends JavaScriptParserBaseVisitor<T> {
         }
         return super.visitVariableDeclaration(ctx);
     }
+
     @Override
     public T visitAdditiveExpression(JavaScriptParser.AdditiveExpressionContext ctx) {
         if (ctx.singleExpression(0).getText().startsWith("'") || ctx.singleExpression(0).getText().startsWith("\"")) {
@@ -24,7 +25,7 @@ public class VisitorJavascript<T> extends JavaScriptParserBaseVisitor<T> {
         if (ctx.singleExpression().getChild(0).getClass() == ctx.getClass()) {
             return isLargeChain(
                     (JavaScriptParser.MemberDotExpressionContext) ctx.singleExpression().getChild(0),
-                    lvl+1);
+                    lvl + 1);
         } else {
             return false;
         }
@@ -43,11 +44,20 @@ public class VisitorJavascript<T> extends JavaScriptParserBaseVisitor<T> {
     @Override
     public T visitFunctionExpression(JavaScriptParser.FunctionExpressionContext ctx) {
         if (!ctx.getParent().getClass().getName().equals("JavaScriptParser$AssignmentExpressionContext")) {
-            if(ctx.Identifier() == null) {
+            if (ctx.Identifier() == null) {
                 manager.AddCodeSmell(SMELL.AnonymousFunction, ctx.getStart().getLine(),
                         ctx.getStart().getCharPositionInLine());
             }
         }
         return super.visitFunctionExpression(ctx);
+    }
+
+    @Override
+    public T visitEqualityExpression(JavaScriptParser.EqualityExpressionContext ctx) {
+        if (ctx.Equals_() != null) {
+            manager.AddCodeSmell(SMELL.Equality, ctx.getStart().getLine(),
+                    ctx.getStart().getCharPositionInLine());
+        }
+        return super.visitEqualityExpression(ctx);
     }
 }

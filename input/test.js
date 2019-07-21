@@ -1,3 +1,7 @@
+function isSomeNumString(numString){
+    return numString === 5;
+}
+/*
 function Person() {
   this.teeth = [{ clean: false }, { clean: false }, { clean: false }];
 };
@@ -17,7 +21,7 @@ Person.prototype.clean = function(tooth) {
 }
 var s = () => {
 }
-/*
+
 var person = new Person();
 person.brush();
 console.log(person.teeth);
@@ -37,9 +41,10 @@ $(document).ready(function() {
     .mouseleave(function() { $(this).removeClass('Component--over'); })
     .addClass('initialized');
 });
-*/
+
 var search = document.querySelector('.Autocomplete');
 search.addEventListener('input', function(e) {
     // Make Ajax call for autocomplete
     console.log(e.target.value);
-});
+});*/
+

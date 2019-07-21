@@ -5,7 +5,7 @@ enum SMELL {
     AnonymousFunction, // https://elijahmanor.com/talks/js-smells/#/11/3
     Equality, // https://github.com/mohuk/js-code-smells#equality
     BrokenPromise, // https://github.com/mohuk/js-code-smells#broken-promises
-    MultipleReturn, // https://github.com/mohuk/js-code-smells#multiple-return-statements @TODO
+    MultipleReturn, // https://github.com/mohuk/js-code-smells#multiple-return-statements
 }
 
 public class CodeSmell {

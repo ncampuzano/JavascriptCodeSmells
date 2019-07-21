@@ -47,11 +47,11 @@ var search = document.querySelector('.Autocomplete');
 search.addEventListener('input', function(e) {
     // Make Ajax call for autocomplete
     console.log(e.target.value);
-});*/
+});
 
- /*
-  * Example 1 - Using Angular JS $http promises
-  * */
+
+  // Example 1 - Using Angular JS $http promises
+
   function getUsers(callback){
     $http.get('/users')
       .then(function(res){
@@ -63,9 +63,9 @@ search.addEventListener('input', function(e) {
     $scope.users = res.users;
   });
 
-  /*
-  * Example 2 - Using Native NodeJS promises
-  * */
+
+  // Example 2 - Using Native NodeJS promises
+
   function getEmployees(){
     return new Promise(function(resolve, reject){
       resolve(doSomething());
@@ -82,4 +82,15 @@ search.addEventListener('input', function(e) {
   getData(function(res){
     console.log(res.employees);
   });
+  */
+
+function stringAdd(numString){
+    var val = parseInt(numString);
+    if(numString === NaN){
+      return 0;
+    }
+    else{
+      return val;
+    }
+}
 

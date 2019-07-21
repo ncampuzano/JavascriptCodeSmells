@@ -92,4 +92,54 @@ public class VisitorJavascript<T> extends JavaScriptParserBaseVisitor<T> {
         }
         return super.visitArgumentsExpression(ctx);
     }
+    /*
+    Checks for the MULTIPLE RETURNS smell
+    This smell may exists if a single function has more than one return in its body
+    Uses the auxiliary function hasReturnStatement(), which returns how many return statements exist in a given statement
+    (This number may be more than 0 for composite statements like an If statement.
+    e.g. an If Statement may have up to two statements inside (The body and the else-body)
+    this two bodies may contain any amount of statements inside
+    those statements may be returnStatements
+     */
+    @Override
+    public T visitFunctionBody(JavaScriptParser.FunctionBodyContext ctx) {
+        int howManyReturnsSeen = 0;
+        if(ctx.sourceElements()!= null){
+            //For each statement in the body of the function
+            for( int i = 0; i < ctx.sourceElements().sourceElement().size() ; i++){
+                //Check how many returnStatements exist inside that statement
+                howManyReturnsSeen += hasReturnStatement(ctx.sourceElements().sourceElement(i).statement());
+                //If its more than one, create the smell
+                if(howManyReturnsSeen > 1 ){
+                    manager.AddCodeSmell(SMELL.MultipleReturn, ctx.sourceElements().sourceElement(i).statement().getStart().getLine(),
+                            ctx.sourceElements().sourceElement(i).statement().getStart().getCharPositionInLine());
+                    return super.visitFunctionBody(ctx);
+                }
+            }
+        }
+        return super.visitFunctionBody(ctx);
+    }
+    public int hasReturnStatement(JavaScriptParser.StatementContext ctx){
+        int howMany = 0;
+        if(ctx.returnStatement() != null){
+            howMany++;
+        }
+        if(ctx.ifStatement()!= null) {
+            //An if statement contains multiple statements inside, iterate over all of those
+            for (int i = 0; i < ctx.ifStatement().statement().size(); i++){
+                //If one of the statements is a block of statements, iterate over all of those too
+                if (ctx.ifStatement().statement(i).block() != null && ctx.ifStatement().statement(i).block().statementList() != null) {
+                    for (int j = 0; j < ctx.ifStatement().statement(i).block().statementList().statement().size(); j++) {
+                        howMany += hasReturnStatement(ctx.ifStatement().statement(i).block().statementList().statement(j));
+                    }
+                }
+                //If one of the statements is a return, count it
+                if(ctx.ifStatement().statement(i).returnStatement()!= null){
+                    howMany++;
+                }
+            }
+        }
+        return howMany;
+    }
+
 }

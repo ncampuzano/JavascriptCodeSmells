@@ -25,5 +25,16 @@ function getData(callback){
 
 getData(function(res){
     console.log(res.employees);
-});
+  });
+
+
+function stringAdd(numString){
+    var val = parseInt(numString);
+    if(numString === NaN){
+      return 0;
+    }
+    else{
+      return val;
+    }
+}
 

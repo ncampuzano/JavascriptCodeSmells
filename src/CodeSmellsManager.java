@@ -26,10 +26,17 @@ public class CodeSmellsManager {
         }
     }
     public void Print() {
+        String result = "[";
         for(int i = 0; i < codeSmells.size(); i ++) {
             CodeSmell smell = codeSmells.get(i);
-            System.out.println("Smell " + smell.type + " found in row " + smell.line + " column " + smell.column);
+            result += "{ \"type\": \"" + smell.type + "\", \"line\": \"" + smell.line + "\", \"column\": \"" + smell.column + "\"}";
+            if (i + 1 < codeSmells.size()) {
+                result += ",";
+            }
         }
+        result += "]";
+
+        System.out.println(result);
     }
     private boolean isEnabled(ArrayList<Integer> x, CodeSmell smell) {
         if (smell.type == SMELL.ThatThis && x.contains(1)) {
@@ -57,12 +64,18 @@ public class CodeSmellsManager {
     }
 
     public void Print(ArrayList<Integer> enableSmells) {
+        String result = "[";
         for(int i = 0; i < codeSmells.size(); i ++) {
             CodeSmell smell = codeSmells.get(i);
             if (isEnabled(enableSmells, smell)) {
-                System.out.println("Smell " + smell.type + " found in row " + smell.line + " column " + smell.column);
+                result += "{ \"type\": \"" + smell.type + "\", \"line\": \"" + smell.line + "\", \"column\": \"" + smell.column + "\"}";
+                if (i + 1 < codeSmells.size()) {
+                    result += ",";
+                }
             }
         }
+        result += "]";
+        System.out.println(result);
     }
 }
 

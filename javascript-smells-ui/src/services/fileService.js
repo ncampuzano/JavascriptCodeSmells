@@ -22,7 +22,7 @@ export default {
     }
   },
   async analysis() {
-    const result = [];
+    const executes = [];
     let smells = '';
     for (let i = 0; i < config.SMELLS.length; i += 1) {
       if (i + 1 < config.SMELLS.length) {
@@ -32,9 +32,25 @@ export default {
       }
     }
     for (let i = 0; i < config.FILES.length; i += 1) {
-      result.push(exec(`java -jar "${config.JAR_PATH}" "${config.FILES[i].path}" "${smells}"`));
+      executes.push(exec(`java -jar "${config.JAR_PATH}" "${config.FILES[i].path}" "${smells}"`));
     }
-    const r = await Promise.all(result);
-    console.log(r);
+    const results = await Promise.all(executes);
+    const result = [];
+    for (let i = 0; i < config.FILES.length; i += 1) {
+      const element = results[i];
+      if (element.stderr) {
+        result.push({
+          path: config.FILES[i].path, name: config.FILES[i].name, error: 1, smells: [],
+        });
+      } else {
+        result.push({
+          path: config.FILES[i].path,
+          name: config.FILES[i].name,
+          error: 0,
+          smells: JSON.parse(element.stdout),
+        });
+      }
+    }
+    return result;
   },
 };

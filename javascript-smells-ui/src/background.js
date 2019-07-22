@@ -3,7 +3,6 @@ import {
 } from 'electron';
 import { createProtocol, installVueDevtools } from 'vue-cli-plugin-electron-builder/lib';
 import fileService from './services/fileService';
-import config from './config';
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 

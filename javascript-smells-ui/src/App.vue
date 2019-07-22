@@ -1,6 +1,12 @@
 <template>
   <div id="app">
-    <router-view/>
+    <div v-if="$route.path !== '/'">
+      <p>Acá arriba va a ir una barra lo más de linda</p>
+      <router-view />
+    </div>
+    <div id="home-layout" v-else>
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -15,6 +21,9 @@ body, html {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100%;
+}
+#home-layout {
   height: 100%;
 }
 #nav {

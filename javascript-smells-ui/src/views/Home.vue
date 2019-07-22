@@ -1,18 +1,65 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="titleContainer">
+      <h1 class="title is-1">Welcome to JavaScript Code Smell Detector</h1>
+    </div>
+    <div class="icon">
+      <img src="../assets/logo.png" />
+    </div>
+    <div class="description">
+      <p> Only with 3 steps you will get your code smells report! Start rigth now</p>
+    </div>
+    <div class="startButton">
+      <button class="button is-dark">
+          <b-icon
+            pack="fas"
+            icon="play"
+          />
+          <span>Start</span>
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
 
 export default {
   name: 'home',
-  components: {
-    HelloWorld,
-  },
 };
 </script>
+<style scoped>
+.home {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100%;
+}
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+.icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+.description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 2;
+}
+.startButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+</style>

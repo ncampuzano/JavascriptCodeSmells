@@ -65,12 +65,19 @@
 </template>
 
 <script>
+const { ipcRenderer } = require('electron');
+
 export default {
   name: 'ProgressBar',
   data() {
     return {
       step: 1,
     };
+  },
+  created() {
+    ipcRenderer.on('SET_FILES_SUCCESS', () => {
+      this.step = 2;
+    });
   },
 };
 </script>

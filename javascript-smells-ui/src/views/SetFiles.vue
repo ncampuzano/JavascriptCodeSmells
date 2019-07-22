@@ -37,7 +37,7 @@
       </span>
     </div>
     <div class="startButton">
-      <button :disabled="dropFiles.length > 0" class="button is-dark" @click="fileUploaded()">
+      <button :disabled="dropFiles.length < 1" class="button is-dark" @click="fileUploaded()">
           <b-icon
             pack="fas"
             icon="play"
@@ -48,6 +48,8 @@
   </section>
 </template>
 <script>
+const { ipcRenderer } = require('electron');
+
 export default {
   name: 'SetFiles',
   data() {
@@ -57,7 +59,13 @@ export default {
   },
   methods: {
     fileUploaded() {
-      console.log(this.dropFiles);
+      const files = [];
+      this.dropFiles.forEach((element) => {
+        files.push({ name: element.name, path: element.path });
+        return true;
+      });
+      ipcRenderer.send('SET_FILES', files);
+      this.$router.push({ name: 'ChooseSmells' });
     },
     deleteDropFile(index) {
       this.dropFiles.splice(index, 1);

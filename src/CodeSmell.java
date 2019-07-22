@@ -1,11 +1,11 @@
 enum SMELL {
-    ThatThis, // https://elijahmanor.com/talks/js-smells/#/4/2
-    ConCat, // https://elijahmanor.com/talks/js-smells/#/5/3
-    ExtremeChain, // https://elijahmanor.com/talks/js-smells/#/6/2
-    AnonymousFunction, // https://elijahmanor.com/talks/js-smells/#/11/3
-    Equality, // https://github.com/mohuk/js-code-smells#equality
-    BrokenPromise, // https://github.com/mohuk/js-code-smells#broken-promises
-    MultipleReturn, // https://github.com/mohuk/js-code-smells#multiple-return-statements
+    ThatThis, //1 https://elijahmanor.com/talks/js-smells/#/4/2
+    ConCat, //2 https://elijahmanor.com/talks/js-smells/#/5/3
+    ExtremeChain, //3 https://elijahmanor.com/talks/js-smells/#/6/2
+    AnonymousFunction, //4 https://elijahmanor.com/talks/js-smells/#/11/3
+    Equality, //5 https://github.com/mohuk/js-code-smells#equality
+    BrokenPromise, //6 https://github.com/mohuk/js-code-smells#broken-promises
+    MultipleReturn, //7 https://github.com/mohuk/js-code-smells#multiple-return-statements
 }
 
 public class CodeSmell {

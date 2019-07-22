@@ -1,5 +1,6 @@
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
+import java.util.ArrayList;
 import java.io.File;
 
 public class Main {
@@ -22,7 +23,17 @@ public class Main {
             // System.out.println();
             VisitorJavascript<Object> loader = new VisitorJavascript<>();
             loader.visit(tree);
-            loader.manager.Print();
+            if (args.length > 1) {
+                String[] y = args[1].split(",");
+                ArrayList<Integer> smellsEnabled = new ArrayList<Integer>();
+                for(String t : y) {
+                    smellsEnabled.add(Integer.parseInt(t));
+                }
+                loader.manager.Print(smellsEnabled);
+            } else {
+                loader.manager.Print();
+            }
+
             // System.out.println(tree.toStringTree(parser)); // imprime el arbol al estilo LISP
         } catch (Exception e) {
             System.err.println("Error (Test): " + e);

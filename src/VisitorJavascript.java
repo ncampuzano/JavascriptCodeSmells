@@ -1,6 +1,5 @@
 import org.antlr.v4.runtime.tree.ParseTree;
 import java.util.*;
-import java.util.ArrayList;
 
 public class VisitorJavascript<T> extends JavaScriptParserBaseVisitor<T> {
     public CodeSmellsManager manager = new CodeSmellsManager();

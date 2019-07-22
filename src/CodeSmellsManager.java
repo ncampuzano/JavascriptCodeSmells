@@ -21,8 +21,6 @@ public class CodeSmellsManager {
         codeSmell.type = type;
         codeSmell.line = line;
         codeSmell.column = column;
-        if (codeSmell.type == SMELL.AnonymousFunction)
-            return;
         if (!isInside(codeSmells, codeSmell)) {
             codeSmells.add(codeSmell);
         }
@@ -31,6 +29,39 @@ public class CodeSmellsManager {
         for(int i = 0; i < codeSmells.size(); i ++) {
             CodeSmell smell = codeSmells.get(i);
             System.out.println("Smell " + smell.type + " found in row " + smell.line + " column " + smell.column);
+        }
+    }
+    private boolean isEnabled(ArrayList<Integer> x, CodeSmell smell) {
+        if (smell.type == SMELL.ThatThis && x.contains(1)) {
+            return true;
+        }
+        if (smell.type == SMELL.ConCat && x.contains(2)) {
+            return true;
+        }
+        if (smell.type == SMELL.ExtremeChain && x.contains(3)) {
+            return true;
+        }
+        if (smell.type == SMELL.AnonymousFunction && x.contains(4)) {
+            return true;
+        }
+        if (smell.type == SMELL.Equality && x.contains(5)) {
+            return true;
+        }
+        if (smell.type == SMELL.BrokenPromise && x.contains(6)) {
+            return true;
+        }
+        if (smell.type == SMELL.MultipleReturn && x.contains(7)) {
+            return true;
+        }
+        return false;
+    }
+
+    public void Print(ArrayList<Integer> enableSmells) {
+        for(int i = 0; i < codeSmells.size(); i ++) {
+            CodeSmell smell = codeSmells.get(i);
+            if (isEnabled(enableSmells, smell)) {
+                System.out.println("Smell " + smell.type + " found in row " + smell.line + " column " + smell.column);
+            }
         }
     }
 }

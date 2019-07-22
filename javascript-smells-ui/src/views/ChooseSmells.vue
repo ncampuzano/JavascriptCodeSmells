@@ -37,6 +37,8 @@
 <script>
 import CodeSmell from '../models/CodeSmells';
 
+const { ipcRenderer } = require('electron');
+
 export default {
   name: 'ChooseSmells',
   data() {
@@ -44,6 +46,11 @@ export default {
       Smells: CodeSmell(),
       SmellsSelected: [],
     };
+  },
+  created() {
+    ipcRenderer.on('SMELLS_SUCCESS', () => {
+      this.$router.push({ name: 'GetResults' });
+    });
   },
   methods: {
     selectSmell(id) {
@@ -58,7 +65,9 @@ export default {
       }
     },
     startAnalysis() {
-
+      console.log('me presionaron');
+      console.log(this.SmellsSelected);
+      ipcRenderer.send('SMELLS', this.SmellsSelected);
     },
   },
 };

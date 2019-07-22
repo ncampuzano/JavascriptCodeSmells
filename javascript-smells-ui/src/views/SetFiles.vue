@@ -57,6 +57,11 @@ export default {
       dropFiles: [],
     };
   },
+  created() {
+    ipcRenderer.on('SET_FILES_SUCCESS', () => {
+      this.$router.push({ name: 'ChooseSmells' });
+    });
+  },
   methods: {
     fileUploaded() {
       const files = [];
@@ -65,7 +70,6 @@ export default {
         return true;
       });
       ipcRenderer.send('SET_FILES', files);
-      this.$router.push({ name: 'ChooseSmells' });
     },
     deleteDropFile(index) {
       this.dropFiles.splice(index, 1);

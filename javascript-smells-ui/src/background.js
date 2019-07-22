@@ -3,6 +3,7 @@ import {
 } from 'electron';
 import { createProtocol, installVueDevtools } from 'vue-cli-plugin-electron-builder/lib';
 import fileService from './services/fileService';
+import config from './config';
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -42,6 +43,15 @@ ipcMain.on('SET_FILES', async (e, options) => {
   const result = fileService.setFiles(options);
   if (result) {
     e.sender.send('SET_FILES_SUCCESS');
+  }
+});
+
+ipcMain.on('SMELLS', async (e, options) => {
+  const result = fileService.setSmells(options);
+  if (result) {
+    e.sender.send('SMELLS_SUCCESS');
+    const analysisResult = await fileService.analysis();
+    e.sender.send('ANALYSIS_SUCCESS', analysisResult);
   }
 });
 

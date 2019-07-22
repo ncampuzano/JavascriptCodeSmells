@@ -34,6 +34,14 @@
           >
             Type: {{ smell.type }} Line: {{ smell.line }} Column: {{ smell.column }}
           </p>
+          <p v-if="item.smells.length < 1">
+            <b-message title="Success" type="is-success" aria-close-label="Close message">
+              Great Job, no smells found over here!
+              <b-icon
+                icon="check">
+              </b-icon>
+            </b-message>
+          </p>
         </div>
       </div>
     </b-collapse>

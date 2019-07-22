@@ -23,7 +23,7 @@
       </b-upload>
     </b-field>
     <p v-show="dropFiles.length > 0" class="subtitle" >
-      Files choosed!
+      Files chosen!
     </p>
     <div class="tags tag-container">
       <span v-for="(file, index) in dropFiles"

@@ -3,8 +3,8 @@
     <div class="titleContainer">
       <h1 class="title is-1">Welcome to JavaScript Code Smell Detector</h1>
     </div>
-    <div class="icon">
-      <img src="../assets/logo.png" />
+    <div class="iconContainer">
+      <img src="../assets/logo.png" style="max-width: 30%"/>
     </div>
     <div class="description">
       <p> Only with 3 steps you will get your code smells report! Start rigth now</p>
@@ -46,7 +46,7 @@ export default {
   align-items: center;
   flex: 1;
 }
-.icon {
+.iconContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;

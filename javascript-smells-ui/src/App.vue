@@ -52,6 +52,7 @@ body, html {
 }
 #home-layout {
   height: 100%;
+  background-image: url('./assets/background.jpg');
 }
 #nav {
   padding: 30px;

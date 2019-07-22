@@ -16,26 +16,17 @@ export default new Router({
     {
       path: '/setFiles',
       name: 'SetFiles',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/SetFiles.vue'),
+      component: () => import('./views/SetFiles.vue'),
     },
     {
       path: '/getResults',
       name: 'GetResults',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/GetResults.vue'),
+      component: () => import('./views/GetResults.vue'),
     },
     {
       path: '/chooseSmells',
       name: 'ChooseSmells',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/ChooseSmells.vue'),
+      component: () => import('./views/ChooseSmells.vue'),
     },
   ],
 });

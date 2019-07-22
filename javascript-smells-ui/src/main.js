@@ -2,14 +2,16 @@ import Vue from 'vue';
 import Buefy from 'buefy';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
-  faPlay, faCheck, faUpload,
+  faPlay, faCheck, faUpload, faExchangeAlt,
+  faLink, faEquals, faCat, faMask, faUndo, faHeartBroken,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import App from './App.vue';
 import router from './router';
 import 'buefy/dist/buefy.css';
 
-library.add(faPlay, faCheck, faUpload);
+library.add(faPlay, faCheck, faUpload, faExchangeAlt,
+  faLink, faEquals, faCat, faMask, faUndo, faHeartBroken);
 
 Vue.component('vue-fontawesome', FontAwesomeIcon);
 

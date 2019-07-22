@@ -1,6 +1,6 @@
 <template>
   <section class="files-container">
-    <h1 class="title is-1">
+    <h1 class="title is-2">
       Step 1. Choose your files!
     </h1>
     <b-field>

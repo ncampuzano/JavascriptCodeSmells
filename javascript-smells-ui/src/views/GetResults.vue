@@ -1,10 +1,10 @@
 <template>
   <section>
-    
+
   </section>
 </template>
 <script>
 export default {
-  name: "GetResults"
-}
+  name: 'GetResults',
+};
 </script>

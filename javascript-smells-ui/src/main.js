@@ -2,14 +2,14 @@ import Vue from 'vue';
 import Buefy from 'buefy';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
-  faPlay,
+  faPlay, faCheck,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import App from './App.vue';
 import router from './router';
 import 'buefy/dist/buefy.css';
 
-library.add(faPlay);
+library.add(faPlay, faCheck);
 
 Vue.component('vue-fontawesome', FontAwesomeIcon);
 

@@ -10,7 +10,7 @@
       <p> Only with 3 steps you will get your code smells report! Start rigth now</p>
     </div>
     <div class="startButton">
-      <button class="button is-dark" @click="_startProcess()">
+      <button class="button is-dark" @click="startProcess()">
           <b-icon
             pack="fas"
             icon="play"
@@ -26,10 +26,10 @@
 export default {
   name: 'home',
   methods: {
-    _startProcess() {
+    startProcess() {
       this.$router.push({ name: 'SetFiles' });
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

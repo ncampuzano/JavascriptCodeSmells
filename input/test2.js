@@ -1,40 +1,11 @@
-function getUsers(callback){
-    $http.get('/users')
-      .then(function(res){
-        callback(res);
-      });
-}
-
-getUsers(function(res){
-    $scope.users = res.users;
+var s = "Hola" + "Hello" + "Mundo" + "World"
+$(document).ready(function() {
+  $('.Component')
+    .find('button')
+      .addClass('Component-button--action')
+      .click(function() { alert('HEY!' + ' Alert'); })
+    .end()
+    .mouseenter(function() { $(this).addClass('Component--over'); })
+    .mouseleave(function() { $(this).removeClass('Component--over'); })
+    .addClass('initialized');
 });
-
-
-function getEmployees(){
-    return new Promise(function(resolve, reject){
-      resolve(doSomething());
-    });
-}
-
-function getData(callback){
-    getEmployees()
-      .then(function(res){
-        callback(res);
-      });
-}
-
-getData(function(res){
-    console.log(res.employees);
-  });
-
-
-function stringAdd(numString){
-    var val = parseInt(numString);
-    if(numString === NaN){
-      return 0;
-    }
-    else{
-      return val;
-    }
-}
-

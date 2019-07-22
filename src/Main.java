@@ -21,16 +21,18 @@ public class Main {
             // ParseTreeWalker walker = new ParseTreeWalker();
             // walker.walk(new ListenerJavascript(),tree);
             // System.out.println();
-            VisitorJavascript<Object> loader = new VisitorJavascript<>();
-            loader.visit(tree);
             if (args.length > 1) {
                 String[] y = args[1].split(",");
                 ArrayList<Integer> smellsEnabled = new ArrayList<Integer>();
                 for(String t : y) {
                     smellsEnabled.add(Integer.parseInt(t));
                 }
-                loader.manager.Print(smellsEnabled);
+                VisitorJavascript<Object> loader = new VisitorJavascript<>(smellsEnabled);
+                loader.visit(tree);
+                loader.manager.Print();
             } else {
+                VisitorJavascript<Object> loader = new VisitorJavascript<>();
+                loader.visit(tree);
                 loader.manager.Print();
             }
 

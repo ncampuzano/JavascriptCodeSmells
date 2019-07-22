@@ -25,11 +25,11 @@
     </div>
     <div class="startButton">
       <button :disabled="SmellsSelected.length < 1" class="button is-dark" @click="startAnalysis()">
-          <b-icon
-            pack="fas"
-            icon="play"
-          />
-          <span>Start Analysis</span>
+        <b-icon
+          pack="fas"
+          icon="play"
+        />
+        <span>Start Analysis</span>
       </button>
     </div>
   </section>
@@ -65,8 +65,6 @@ export default {
       }
     },
     startAnalysis() {
-      console.log('me presionaron');
-      console.log(this.SmellsSelected);
       ipcRenderer.send('SMELLS', this.SmellsSelected);
     },
   },

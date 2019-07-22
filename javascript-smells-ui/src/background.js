@@ -53,6 +53,12 @@ ipcMain.on('SMELLS', async (e, options) => {
     e.sender.send('ANALYSIS_SUCCESS', analysisResult);
   }
 });
+ipcMain.on('RESTART', async (e) => {
+  const result = fileService.restart();
+  if (result) {
+    e.sender.send('RESTART_SUCCESS');
+  }
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {

@@ -2,8 +2,13 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import java.util.*;
 
 public class VisitorJavascript<T> extends JavaScriptParserBaseVisitor<T> {
-    public CodeSmellsManager manager = new CodeSmellsManager();
-
+    public CodeSmellsManager manager;
+    VisitorJavascript(ArrayList<Integer> _enableSmells) {
+        manager = new CodeSmellsManager(_enableSmells);
+    }
+    VisitorJavascript() {
+        manager = new CodeSmellsManager();
+    }
     @Override
     public T visitVariableDeclaration(JavaScriptParser.VariableDeclarationContext ctx) {
         if (ctx.singleExpression().getText().equals("this")) {

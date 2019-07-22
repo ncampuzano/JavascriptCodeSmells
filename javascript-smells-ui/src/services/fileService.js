@@ -13,6 +13,15 @@ export default {
       return false;
     }
   },
+  restart() {
+    try {
+      config.FILES = [];
+      config.SMELLS = [];
+      return true;
+    } catch (e) {
+      return false;
+    }
+  },
   setSmells(smells) {
     try {
       config.SMELLS = smells;
@@ -43,6 +52,7 @@ export default {
           path: config.FILES[i].path, name: config.FILES[i].name, error: 1, smells: [],
         });
       } else {
+        console.log(element.stdout);
         result.push({
           path: config.FILES[i].path,
           name: config.FILES[i].name,

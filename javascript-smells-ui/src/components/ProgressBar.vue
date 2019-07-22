@@ -78,6 +78,15 @@ export default {
     ipcRenderer.on('SET_FILES_SUCCESS', () => {
       this.step = 2;
     });
+    ipcRenderer.on('SMELLS_SUCCESS', () => {
+      this.step = 3;
+    });
+    ipcRenderer.on('ANALYSIS_SUCCESS', () => {
+      this.step = 4;
+    });
+    ipcRenderer.on('RESTART_SUCCESS', () => {
+      this.step = 1;
+    });
   },
 };
 </script>
